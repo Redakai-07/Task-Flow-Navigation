@@ -1,0 +1,125 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.Mobile-form{
+    width: 100%;
+    max-width: 350px;
+    margin: 3rem auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    margin-top: 50px;
+    border-radius: 8px;
+}
+
+.Mobile-form input {
+    width: 100%; 
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Enhanced Mobile Input Styles */
+.Mobile-form .ant-input {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 2px solid #e8e8e8;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+}
+
+.Mobile-form .ant-input:focus {
+    border-color: #1890ff;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+    background-color: #fff;
+}
+
+.Mobile-form .ant-input:hover {
+    border-color: #40a9ff;
+}
+
+/* Mobile Number Input Specific Styles */
+.Mobile-form .ant-input-affix-wrapper {
+    border-radius: 8px;
+    border: 2px solid #e8e8e8;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+}
+
+.Mobile-form .ant-input-affix-wrapper:hover {
+    border-color: #40a9ff;
+}
+
+.Mobile-form .ant-input-affix-wrapper-focused {
+    border-color: #1890ff;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+    background-color: #fff;
+}
+
+/* Button Enhancements */
+.Mobile-form .ant-btn {
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    height: 44px; /* Better touch target */
+}
+
+.Mobile-form .ant-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .Mobile-form {
+        width: 100%;
+        max-width: 350px;
+        margin: 2rem auto;
+        padding: 15px;
+    }
+    
+    .Mobile-form input {
+        padding: 12px;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    .Mobile-form .ant-input {
+        padding: 14px 16px;
+        font-size: 16px;
+    }
+    
+    .Mobile-form .ant-btn {
+        height: 48px; /* Larger touch target on mobile */
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .Mobile-form {
+        width: 100%;
+        max-width: 350px;
+        margin: 1rem auto;
+        padding: 10px;
+    }
+    
+    .Mobile-form input {
+        padding: 10px;
+        margin: 8px 0;
+    }
+    
+    .Mobile-form .ant-input {
+        padding: 12px 14px;
+    }
+    
+    .Mobile-form .ant-btn {
+        height: 44px;
+    }
+}
+

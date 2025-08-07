@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Steps, message } from "antd";
+import { Button, message } from "antd";
 import { useDispatch, useSelector } from 'react-redux';
 import { completeStep } from '../../slice';
 
@@ -52,56 +52,60 @@ const Stepper = () => {
     dispatch(completeStep(stepIndex));
   };
 
+  const steps = [
+    { title: "Registration", index: 0 },
+    { title: "Login", index: 1 },
+    { title: "Mobile", index: 2 },
+    { title: "Otp", index: 3 },
+    { title: "Pagination", index: 4 },
+    { title: "Counter", index: 5 },
+    { title: "To Do List", index: 6 },
+    { title: "Success", index: 7 }
+  ];
+
+  const getStepStatus = (stepIndex) => {
+    if (completedSteps.includes(stepIndex)) {
+      return "completed";
+    } else if (current === stepIndex) {
+      return "current";
+    } else {
+      return "waiting";
+    }
+  };
+
   return (
     <div className="container">
       <div className="steps">
-        <Steps
-          wrapperCol={{
-            span: 24,
-          }}
-          labelCol={{
-            span:24,
-          }}
-          className="site-navigation-steps"
-          responsive={true}
-          size="small"
-          current={current}
-          onChange={handleStepChange}
-          items={[
-            { 
-              title: "Registration",
-              status: completedSteps.includes(0) ? "finish" : current === 0 ? "process" : "wait"
-            },
-            { 
-              title: "Login",
-              status: completedSteps.includes(1) ? "finish" : current === 1 ? "process" : "wait"
-            },
-            { 
-              title: "Mobile",
-              status: completedSteps.includes(2) ? "finish" : current === 2 ? "process" : "wait"
-            },
-            { 
-              title: "Otp",
-              status: completedSteps.includes(3) ? "finish" : current === 3 ? "process" : "wait"
-            },
-            { 
-              title: "Pagination",
-              status: completedSteps.includes(4) ? "finish" : current === 4 ? "process" : "wait"
-            },
-            { 
-              title: "Counter",
-              status: completedSteps.includes(5) ? "finish" : current === 5 ? "process" : "wait"
-            },
-            { 
-              title: "To Do List",
-              status: completedSteps.includes(6) ? "finish" : current === 6 ? "process" : "wait"
-            },
-            { 
-              title: "Success",
-              status: completedSteps.includes(7) ? "finish" : current === 7 ? "process" : "wait"
-            },
-          ]}
-        />
+        <div className="site-navigation-steps">
+          <div className="custom-steps">
+            {steps.map((step, index) => {
+              const status = getStepStatus(step.index);
+              const isClickable = canAccessStep(step.index);
+              
+              return (
+                <div 
+                  key={step.index}
+                  className={`custom-step-item ${status} ${isClickable ? 'clickable' : ''}`}
+                  onClick={() => isClickable && handleStepChange(step.index)}
+                >
+                  <div className="step-icon">
+                    {status === "completed" ? (
+                      <span className="step-number completed">✓</span>
+                    ) : (
+                      <span className={`step-number ${status}`}>{step.index + 1}</span>
+                    )}
+                  </div>
+                  <div className="step-content">
+                    <div className="step-title">{step.title}</div>
+                  </div>
+                  {index < steps.length - 1 && (
+                    <div className={`step-connector ${status}`}></div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
       <div className="components">
         {current === 0 && <UserForm current={current} setCurrent={setCurrent} markStepCompleted={markStepCompleted} />}
